@@ -1,0 +1,7 @@
+node_modules
+dist
+.astro
+.agents
+.grok
+package-lock.json
+src/data/sovereignty_atlas_2025.json

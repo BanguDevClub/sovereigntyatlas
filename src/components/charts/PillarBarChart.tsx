@@ -30,13 +30,13 @@ export const PillarBarChart: React.FC<PillarBarChartProps> = ({
   return (
     <div style={{ width: '100%', height }}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          layout="vertical"
-          margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
-        >
+        <BarChart data={data} layout="vertical" margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" horizontal={false} strokeOpacity={0.15} />
-          <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 10, fill: 'currentColor', opacity: 0.7 }} />
+          <XAxis
+            type="number"
+            domain={[0, 100]}
+            tick={{ fontSize: 10, fill: 'currentColor', opacity: 0.7 }}
+          />
           <YAxis
             type="category"
             dataKey="name"
@@ -52,7 +52,9 @@ export const PillarBarChart: React.FC<PillarBarChartProps> = ({
                     <p className="font-semibold text-foreground">{item.name}</p>
                     <p className="text-primary font-bold">{item.score} / 100</p>
                     {item.description && (
-                      <p className="text-muted-foreground text-[11px] max-w-xs">{item.description}</p>
+                      <p className="text-muted-foreground text-[11px] max-w-xs">
+                        {item.description}
+                      </p>
                     )}
                   </div>
                 );

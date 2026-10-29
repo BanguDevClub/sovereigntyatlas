@@ -1,5 +1,6 @@
 import datasetRaw from '../data/sovereignty_atlas_2025.json';
-import type { AtlasData, Country, Continent, PillarType } from './types';
+import type { AtlasData, Country, Continent, PillarType, ContinentSummary } from './types';
+export type { ContinentSummary };
 
 export const atlasData = datasetRaw as unknown as AtlasData;
 
@@ -29,33 +30,35 @@ export function getCountriesByContinent(continent: Continent): Country[] {
   return atlasData.countries.filter((c) => c.continent === continent);
 }
 
-export interface ContinentSummary {
-  name: Continent;
-  count: number;
-  avgScore: number;
-  topCountry: Country;
-  lowestCountry: Country;
-  avgConsumption: number;
-  avgEmployment: number;
-  avgTechnological: number;
-  avgScientific: number;
-  avgMilitary: number;
-  totalPopulation: number;
-  totalGdp: number;
-}
-
 export function getContinentsSummary(): ContinentSummary[] {
-  const continents: Continent[] = ['Africa', 'Asia', 'Europe', 'North America', 'South America', 'Oceania'];
+  const continents: Continent[] = [
+    'Africa',
+    'Asia',
+    'Europe',
+    'North America',
+    'South America',
+    'Oceania'
+  ];
 
   return continents.map((name) => {
     const list = getCountriesByContinent(name);
     const count = list.length;
     const avgScore = Number((list.reduce((acc, c) => acc + c.overallScore, 0) / count).toFixed(1));
-    const avgConsumption = Number((list.reduce((acc, c) => acc + c.pillars.consumption.score, 0) / count).toFixed(1));
-    const avgEmployment = Number((list.reduce((acc, c) => acc + c.pillars.employment.score, 0) / count).toFixed(1));
-    const avgTechnological = Number((list.reduce((acc, c) => acc + c.pillars.technological.score, 0) / count).toFixed(1));
-    const avgScientific = Number((list.reduce((acc, c) => acc + c.pillars.scientific.score, 0) / count).toFixed(1));
-    const avgMilitary = Number((list.reduce((acc, c) => acc + c.pillars.military.score, 0) / count).toFixed(1));
+    const avgConsumption = Number(
+      (list.reduce((acc, c) => acc + c.pillars.consumption.score, 0) / count).toFixed(1)
+    );
+    const avgEmployment = Number(
+      (list.reduce((acc, c) => acc + c.pillars.employment.score, 0) / count).toFixed(1)
+    );
+    const avgTechnological = Number(
+      (list.reduce((acc, c) => acc + c.pillars.technological.score, 0) / count).toFixed(1)
+    );
+    const avgScientific = Number(
+      (list.reduce((acc, c) => acc + c.pillars.scientific.score, 0) / count).toFixed(1)
+    );
+    const avgMilitary = Number(
+      (list.reduce((acc, c) => acc + c.pillars.military.score, 0) / count).toFixed(1)
+    );
     const totalPopulation = list.reduce((acc, c) => acc + c.population, 0);
     const totalGdp = Number(list.reduce((acc, c) => acc + c.gdpNominalBillions, 0).toFixed(1));
 

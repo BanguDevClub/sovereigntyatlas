@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import OverviewHero from '../components/dashboard/OverviewHero';
-import { getAllCountries, getTopCountries, getTopByPillar } from '../lib/data';
+import { getTopCountries, getTopByPillar } from '../lib/data';
 
-const countries = getAllCountries();
 const topCountries = getTopCountries(15);
 
 const champions = {

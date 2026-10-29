@@ -17,9 +17,7 @@ interface MethodologyViewProps {
   base?: string;
 }
 
-export const MethodologyView: React.FC<MethodologyViewProps> = ({
-  base = '/sovereigntyatlas'
-}) => {
+export const MethodologyView: React.FC<MethodologyViewProps> = () => {
   return (
     <div className="space-y-12 max-w-4xl mx-auto">
       {/* Header */}
@@ -32,7 +30,9 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
           Sovereignty Atlas Methodology
         </h1>
         <p className="text-base text-muted-foreground leading-relaxed">
-          Mathematical formulation, indicator weighting rationale, data normalization protocols, and proxy estimation framework evaluating the national independence of all 195 sovereign states.
+          Mathematical formulation, indicator weighting rationale, data normalization protocols, and
+          proxy estimation framework evaluating the national independence of all 195 sovereign
+          states.
         </p>
       </div>
 
@@ -46,7 +46,9 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
         </div>
 
         <p className="text-xs text-muted-foreground leading-relaxed">
-          The national sovereignty index <KaTeXMath math="\mathcal{S}_i \in [0, 100]" /> for country <KaTeXMath math="i" /> is modeled as a normalized multi-criteria objective function across the five strategic independence pillars:
+          The national sovereignty index <KaTeXMath math="\mathcal{S}_i \in [0, 100]" /> for country{' '}
+          <KaTeXMath math="i" /> is modeled as a normalized multi-criteria objective function across
+          the five strategic independence pillars:
         </p>
 
         <div className="rounded-2xl border border-border bg-muted/40 p-5 overflow-x-auto text-center space-y-3">
@@ -64,22 +66,28 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
           </div>
           <div className="text-[11px] text-muted-foreground">
             Subject to the unity constraint:{' '}
-            <KaTeXMath math={`\\sum_{p \\in \\mathcal{P}} w_p = 0.28 + 0.25 + 0.20 + 0.15 + 0.12 = 1.00`} />
+            <KaTeXMath
+              math={`\\sum_{p \\in \\mathcal{P}} w_p = 0.28 + 0.25 + 0.20 + 0.15 + 0.12 = 1.00`}
+            />
           </div>
         </div>
 
         <div className="text-xs text-muted-foreground space-y-2">
           <p>
-            Where each pillar score <KaTeXMath math="S_{i,p} \in [0, 100]" /> is calculated as the arithmetic mean of its five calibrated sub-indicators <KaTeXMath math="k \in K_p" />:
+            Where each pillar score <KaTeXMath math="S_{i,p} \in [0, 100]" /> is calculated as the
+            arithmetic mean of its five calibrated sub-indicators <KaTeXMath math="k \in K_p" />:
           </p>
           <div className="p-3 rounded-xl bg-muted/30 text-center font-mono">
             <KaTeXMath math={`S_{i,p} = \\frac{1}{|K_p|} \\sum_{k \\in K_p} \\phi_k(x_{i,k})`} />
           </div>
           <p>
-            and <KaTeXMath math="\phi_k(x)" /> is the min-max standardizer mapped to <KaTeXMath math="[0, 100]" />:
+            and <KaTeXMath math="\phi_k(x)" /> is the min-max standardizer mapped to{' '}
+            <KaTeXMath math="[0, 100]" />:
           </p>
           <div className="p-3 rounded-xl bg-muted/30 text-center font-mono">
-            <KaTeXMath math={`\\phi_k(x) = \\min\\left(100, \\max\\left(0, \\frac{x - x_{\\min, k}}{x_{\\max, k} - x_{\\min, k}} \\times 100\\right)\\right)`} />
+            <KaTeXMath
+              math={`\\phi_k(x) = \\min\\left(100, \\max\\left(0, \\frac{x - x_{\\min, k}}{x_{\\max, k} - x_{\\min, k}} \\times 100\\right)\\right)`}
+            />
           </div>
         </div>
       </section>
@@ -91,7 +99,8 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
             2. Pillar Ranking &amp; Weighting Rationale
           </h2>
           <p className="text-xs text-muted-foreground mt-1">
-            Why the methodology prioritizes physical survival and labor before technology and armed defense.
+            Why the methodology prioritizes physical survival and labor before technology and armed
+            defense.
           </p>
         </div>
 
@@ -112,25 +121,34 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
               </span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              <strong>Rationale:</strong> The biological and thermal survival of a population precedes all economic and geopolitical activity. A nation that cannot produce staple food, refine vehicle fuels, generate electricity, produce basic building materials, or secure potable water can be brought to capitulation within days of a naval quarantine or trade embargo without a single shot fired.
+              <strong>Rationale:</strong> The biological and thermal survival of a population
+              precedes all economic and geopolitical activity. A nation that cannot produce staple
+              food, refine vehicle fuels, generate electricity, produce basic building materials, or
+              secure potable water can be brought to capitulation within days of a naval quarantine
+              or trade embargo without a single shot fired.
             </p>
             <div className="pt-2 text-xs">
               <span className="font-semibold text-foreground">Five Sub-Indicators:</span>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5 text-muted-foreground">
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Food Self-Sufficiency (% caloric staples)
+                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Food Self-Sufficiency (%
+                  caloric staples)
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Primary Electrical Energy Independence
+                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Primary Electrical Energy
+                  Independence
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Domestic Petroleum &amp; Biofuel Refining
+                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Domestic Petroleum &amp;
+                  Biofuel Refining
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Basic Construction Materials (Cement, Steel)
+                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Basic Construction
+                  Materials (Cement, Steel)
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Freshwater Security &amp; Aquifer Autonomy
+                  <CheckCircle2 className="size-3.5 text-emerald-500" /> Freshwater Security &amp;
+                  Aquifer Autonomy
                 </li>
               </ul>
             </div>
@@ -152,25 +170,33 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
               </span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              <strong>Rationale:</strong> Economic independence requires that a country's citizens work inside formalized domestic enterprises where labor laws, social safety nets, and capital reinvestment remain within national borders. If the workforce is dominated by informality or serves as precarious remote digital contractors for foreign conglomerates, national surplus is drained and domestic stability is held hostage.
+              <strong>Rationale:</strong> Economic independence requires that a country's citizens
+              work inside formalized domestic enterprises where labor laws, social safety nets, and
+              capital reinvestment remain within national borders. If the workforce is dominated by
+              informality or serves as precarious remote digital contractors for foreign
+              conglomerates, national surplus is drained and domestic stability is held hostage.
             </p>
             <div className="pt-2 text-xs">
               <span className="font-semibold text-foreground">Five Sub-Indicators:</span>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5 text-muted-foreground">
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-sky-500" /> Formal Protected Employment Rate
+                  <CheckCircle2 className="size-3.5 text-sky-500" /> Formal Protected Employment
+                  Rate
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-sky-500" /> Domestic Enterprise Value Retention
+                  <CheckCircle2 className="size-3.5 text-sky-500" /> Domestic Enterprise Value
+                  Retention
                 </li>
                 <li className="flex items-center gap-1.5">
                   <CheckCircle2 className="size-3.5 text-sky-500" /> Brain Drain Retention Index
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-sky-500" /> Labor Law Sovereignty &amp; Protection
+                  <CheckCircle2 className="size-3.5 text-sky-500" /> Labor Law Sovereignty &amp;
+                  Protection
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-sky-500" /> Trade Shock Employment Resilience
+                  <CheckCircle2 className="size-3.5 text-sky-500" /> Trade Shock Employment
+                  Resilience
                 </li>
               </ul>
             </div>
@@ -192,22 +218,30 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
               </span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              <strong>Rationale:</strong> In the 21st century, silicon, artificial intelligence, telecommunications, and industrial automation determine industrial capability. A nation lacking domestic compute infrastructure or relying entirely on foreign chip foundries can be remotely partitioned from digital infrastructure during geopolitical conflicts.
+              <strong>Rationale:</strong> In the 21st century, silicon, artificial intelligence,
+              telecommunications, and industrial automation determine industrial capability. A
+              nation lacking domestic compute infrastructure or relying entirely on foreign chip
+              foundries can be remotely partitioned from digital infrastructure during geopolitical
+              conflicts.
             </p>
             <div className="pt-2 text-xs">
               <span className="font-semibold text-foreground">Five Sub-Indicators:</span>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5 text-muted-foreground">
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-indigo-500" /> Semiconductor Wafer Fabrication
+                  <CheckCircle2 className="size-3.5 text-indigo-500" /> Semiconductor Wafer
+                  Fabrication
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-indigo-500" /> Sovereign AI Foundation Compute
+                  <CheckCircle2 className="size-3.5 text-indigo-500" /> Sovereign AI Foundation
+                  Compute
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-indigo-500" /> Triadic High-Value Patent Generation
+                  <CheckCircle2 className="size-3.5 text-indigo-500" /> Triadic High-Value Patent
+                  Generation
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-indigo-500" /> Telecom 5G/6G &amp; Undersea Cables
+                  <CheckCircle2 className="size-3.5 text-indigo-500" /> Telecom 5G/6G &amp; Undersea
+                  Cables
                 </li>
                 <li className="flex items-center gap-1.5">
                   <CheckCircle2 className="size-3.5 text-indigo-500" /> Industrial Robotics Density
@@ -232,25 +266,33 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
               </span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              <strong>Rationale:</strong> Technological patents are downstream from fundamental science. A sovereign society must be able to train PhDs, physicists, biochemists, and engineers domestically without relying on foreign visas or foreign academic institutions to acquire frontier scientific breakthroughs.
+              <strong>Rationale:</strong> Technological patents are downstream from fundamental
+              science. A sovereign society must be able to train PhDs, physicists, biochemists, and
+              engineers domestically without relying on foreign visas or foreign academic
+              institutions to acquire frontier scientific breakthroughs.
             </p>
             <div className="pt-2 text-xs">
               <span className="font-semibold text-foreground">Five Sub-Indicators:</span>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5 text-muted-foreground">
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-purple-500" /> Frontier Journal Citations (Nature Index)
+                  <CheckCircle2 className="size-3.5 text-purple-500" /> Frontier Journal Citations
+                  (Nature Index)
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-purple-500" /> Domestic University PhD Depth
+                  <CheckCircle2 className="size-3.5 text-purple-500" /> Domestic University PhD
+                  Depth
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-purple-500" /> R&amp;D Expenditure as % of GDP
+                  <CheckCircle2 className="size-3.5 text-purple-500" /> R&amp;D Expenditure as % of
+                  GDP
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-purple-500" /> Mega-Science Lab Infrastructure
+                  <CheckCircle2 className="size-3.5 text-purple-500" /> Mega-Science Lab
+                  Infrastructure
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-purple-500" /> STEM Graduate Annual Pipeline
+                  <CheckCircle2 className="size-3.5 text-purple-500" /> STEM Graduate Annual
+                  Pipeline
                 </li>
               </ul>
             </div>
@@ -272,25 +314,33 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
               </span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              <strong>Rationale:</strong> Sovereign borders and exclusive economic zones must be defendable by indigenous armed forces and domestic weapons industries. While military capability is vital for survival, it ranks fifth because a military cannot operate or sustain readiness without food, fuel, domestic labor, and technology.
+              <strong>Rationale:</strong> Sovereign borders and exclusive economic zones must be
+              defendable by indigenous armed forces and domestic weapons industries. While military
+              capability is vital for survival, it ranks fifth because a military cannot operate or
+              sustain readiness without food, fuel, domestic labor, and technology.
             </p>
             <div className="pt-2 text-xs">
               <span className="font-semibold text-foreground">Five Sub-Indicators:</span>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5 text-muted-foreground">
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-rose-500" /> Active Troops &amp; Territorial Reserves
+                  <CheckCircle2 className="size-3.5 text-rose-500" /> Active Troops &amp;
+                  Territorial Reserves
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-rose-500" /> Indigenous Defense Manufacturing
+                  <CheckCircle2 className="size-3.5 text-rose-500" /> Indigenous Defense
+                  Manufacturing
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-rose-500" /> Air &amp; Ballistic Missile Defense
+                  <CheckCircle2 className="size-3.5 text-rose-500" /> Air &amp; Ballistic Missile
+                  Defense
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-rose-500" /> Strategic Deterrence (Nuclear / Triad)
+                  <CheckCircle2 className="size-3.5 text-rose-500" /> Strategic Deterrence (Nuclear
+                  / Triad)
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <CheckCircle2 className="size-3.5 text-rose-500" /> Logistical Wartime Ammunition Sustainment
+                  <CheckCircle2 className="size-3.5 text-rose-500" /> Logistical Wartime Ammunition
+                  Sustainment
                 </li>
               </ul>
             </div>
@@ -308,21 +358,29 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
         </div>
 
         <p className="text-xs text-muted-foreground leading-relaxed">
-          For jurisdictions with restricted primary statistical reporting, wartime censorship, or microstate data gaps (e.g. North Korea, Syria, Somalia, Yemen, South Sudan, Cuba, Vatican City), Sovereignty Atlas executes a calibrated proxy econometric model:
+          For jurisdictions with restricted primary statistical reporting, wartime censorship, or
+          microstate data gaps (e.g. North Korea, Syria, Somalia, Yemen, South Sudan, Cuba, Vatican
+          City), Sovereignty Atlas executes a calibrated proxy econometric model:
         </p>
 
         <ul className="space-y-2 text-xs text-foreground/80 list-disc list-inside">
           <li>
-            <strong>Mirror Trade Statistics:</strong> Import/export quantities cross-verified via primary partner customs declarations (UN Comtrade, IMF Direction of Trade).
+            <strong>Mirror Trade Statistics:</strong> Import/export quantities cross-verified via
+            primary partner customs declarations (UN Comtrade, IMF Direction of Trade).
           </li>
           <li>
-            <strong>Satellite &amp; Remote Sensing:</strong> Nighttime luminosity tracking, crop vegetation indices (NDVI), and marine automatic identification system (AIS) oil tanker tracking.
+            <strong>Satellite &amp; Remote Sensing:</strong> Nighttime luminosity tracking, crop
+            vegetation indices (NDVI), and marine automatic identification system (AIS) oil tanker
+            tracking.
           </li>
           <li>
-            <strong>Multilateral Defense Baselines:</strong> SIPRI Military Expenditure Database and IISS The Military Balance.
+            <strong>Multilateral Defense Baselines:</strong> SIPRI Military Expenditure Database and
+            IISS The Military Balance.
           </li>
           <li>
-            <strong>Mandatory Banner Notice:</strong> Any nation evaluated via secondary proxy models displays the explicit &ldquo;Statistical Estimative Notice&rdquo; banner throughout its dashboard.
+            <strong>Mandatory Banner Notice:</strong> Any nation evaluated via secondary proxy
+            models displays the explicit &ldquo;Statistical Estimative Notice&rdquo; banner
+            throughout its dashboard.
           </li>
         </ul>
       </section>
@@ -334,7 +392,8 @@ export const MethodologyView: React.FC<MethodologyViewProps> = ({
           <span>BanguDevClub Open Source Commitment</span>
         </div>
         <p className="text-xs text-muted-foreground leading-relaxed">
-          Sovereignty Atlas is released under the permissive MIT License. All data, scoring scripts, and components are fully public and reproducible on GitHub.
+          Sovereignty Atlas is released under the permissive MIT License. All data, scoring scripts,
+          and components are fully public and reproducible on GitHub.
         </p>
         <div className="pt-2">
           <a

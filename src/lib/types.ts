@@ -1,8 +1,15 @@
 export type PillarType = 'consumption' | 'employment' | 'technological' | 'scientific' | 'military';
 
-export type Continent = 'Africa' | 'Asia' | 'Europe' | 'North America' | 'South America' | 'Oceania';
+export type Continent =
+  'Africa' | 'Asia' | 'Europe' | 'North America' | 'South America' | 'Oceania';
 
-export type ThemeName = 'light' | 'dark' | 'catppuccin-latte' | 'catppuccin-frappe' | 'catppuccin-macchiato' | 'catppuccin-mocha';
+export type ThemeName =
+  | 'light'
+  | 'dark'
+  | 'catppuccin-latte'
+  | 'catppuccin-frappe'
+  | 'catppuccin-macchiato'
+  | 'catppuccin-mocha';
 
 export interface ConsumptionPillar {
   score: number;
@@ -105,12 +112,30 @@ export interface Metadata {
     military: number;
   };
   weightRank: string[];
-  pillarsDocumentation: Record<string, {
-    rank: number;
-    weight: number;
-    name: string;
-    submetrics: string[];
-  }>;
+  pillarsDocumentation: Record<
+    string,
+    {
+      rank: number;
+      weight: number;
+      name: string;
+      submetrics: string[];
+    }
+  >;
+}
+
+export interface ContinentSummary {
+  name: Continent;
+  count: number;
+  avgScore: number;
+  topCountry: Country;
+  lowestCountry: Country;
+  avgConsumption: number;
+  avgEmployment: number;
+  avgTechnological: number;
+  avgScientific: number;
+  avgMilitary: number;
+  totalPopulation: number;
+  totalGdp: number;
 }
 
 export interface AtlasData {

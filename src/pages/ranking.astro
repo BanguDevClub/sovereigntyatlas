@@ -16,14 +16,11 @@ const countries = getAllCountries();
         Global Sovereignty Ranking (2025)
       </h1>
       <p class="text-sm text-muted-foreground mt-1">
-        Comprehensive leaderboard covering all 195 sovereign nations with sortable pillars, filters, and CSV export.
+        Comprehensive leaderboard covering all 195 sovereign nations with sortable pillars, filters,
+        and CSV export.
       </p>
     </div>
 
-    <RankingTable
-      client:load
-      countries={countries}
-      base="/sovereigntyatlas"
-    />
+    <RankingTable client:load countries={countries} base="/sovereigntyatlas" />
   </div>
 </Layout>

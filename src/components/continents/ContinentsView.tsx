@@ -1,21 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Globe,
-  MapPin,
-  Trophy,
-  TrendingDown,
-  TrendingUp,
-  Users,
-  DollarSign,
-  ArrowRight,
-  ChevronRight,
-  ShieldAlert,
-  Wheat,
-  Briefcase,
-  Cpu,
-  FlaskConical,
-  Shield
-} from 'lucide-react';
+import { MapPin, Trophy, TrendingDown, ChevronRight } from 'lucide-react';
 import {
   BarChart,
   Bar,
@@ -26,7 +10,6 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
-import { SovereigntyBadge } from '../ui/SovereigntyBadge';
 import { formatNumber } from '../../lib/data';
 import type { ContinentSummary, Country, Continent } from '../../lib/types';
 
@@ -69,7 +52,8 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
           Continental &amp; Regional Sovereignty
         </h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Comparative macroeconomic autonomy, resource distribution, and geopolitical resilience across world continents.
+          Comparative macroeconomic autonomy, resource distribution, and geopolitical resilience
+          across world continents.
         </p>
       </div>
 
@@ -101,7 +85,8 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs text-muted-foreground">Average Sovereignty Index</span>
                   <span className="text-xl font-black text-foreground">
-                    {item.avgScore.toFixed(1)} <span className="text-xs font-normal text-muted-foreground">/ 100</span>
+                    {item.avgScore.toFixed(1)}{' '}
+                    <span className="text-xs font-normal text-muted-foreground">/ 100</span>
                   </span>
                 </div>
 
@@ -114,7 +99,9 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
                     <span className="font-semibold text-foreground flex items-center gap-1">
                       <span>{item.topCountry.flag}</span>
                       <span>{item.topCountry.name}</span>
-                      <span className="text-primary font-bold">({item.topCountry.overallScore.toFixed(1)})</span>
+                      <span className="text-primary font-bold">
+                        ({item.topCountry.overallScore.toFixed(1)})
+                      </span>
                     </span>
                   </div>
 
@@ -126,7 +113,9 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
                     <span className="font-medium text-foreground flex items-center gap-1">
                       <span>{item.lowestCountry.flag}</span>
                       <span>{item.lowestCountry.name}</span>
-                      <span className="text-rose-500">({item.lowestCountry.overallScore.toFixed(1)})</span>
+                      <span className="text-rose-500">
+                        ({item.lowestCountry.overallScore.toFixed(1)})
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -144,20 +133,16 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
       {/* Multi-Continent Bar Chart Comparison */}
       <section className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-md space-y-6">
         <div>
-          <h2 className="text-xl font-bold text-foreground">
-            Continental Pillars Benchmark
-          </h2>
+          <h2 className="text-xl font-bold text-foreground">Continental Pillars Benchmark</h2>
           <p className="text-xs text-muted-foreground">
-            Comparing average scores across Consumption, Employment, Technological, Scientific, and Military capabilities.
+            Comparing average scores across Consumption, Employment, Technological, Scientific, and
+            Military capabilities.
           </p>
         </div>
 
         <div style={{ width: '100%', height: 360 }}>
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={chartData}
-              margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
-            >
+            <BarChart data={chartData} margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} strokeOpacity={0.15} />
               <XAxis dataKey="name" tick={{ fontSize: 12, fill: 'currentColor' }} />
               <YAxis domain={[0, 100]} tick={{ fontSize: 11, fill: 'currentColor' }} />
@@ -169,7 +154,7 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
                         <p className="font-bold text-foreground border-b border-border pb-1">
                           {label}
                         </p>
-                        {payload.map((entry: any, idx: number) => (
+                        {payload.map((entry, idx) => (
                           <div key={idx} className="flex items-center justify-between gap-4">
                             <span style={{ color: entry.color }} className="font-medium">
                               {entry.name}:
@@ -248,13 +233,8 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
             </thead>
             <tbody className="divide-y divide-border/60">
               {continentCountries.map((c, index) => (
-                <tr
-                  key={c.id}
-                  className="hover:bg-muted/40 transition-colors group"
-                >
-                  <td className="py-3 px-3 font-extrabold text-foreground">
-                    #{index + 1}
-                  </td>
+                <tr key={c.id} className="hover:bg-muted/40 transition-colors group">
+                  <td className="py-3 px-3 font-extrabold text-foreground">#{index + 1}</td>
                   <td className="py-3 px-3">
                     <a
                       href={`${cleanBase}/dashboard?country=${c.id}`}
@@ -269,13 +249,9 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
                       )}
                     </a>
                   </td>
-                  <td className="py-3 px-3 text-muted-foreground">
-                    #{c.rank}
-                  </td>
+                  <td className="py-3 px-3 text-muted-foreground">#{c.rank}</td>
                   <td className="py-3 px-3">
-                    <span className="font-black text-foreground">
-                      {c.overallScore.toFixed(1)}
-                    </span>
+                    <span className="font-black text-foreground">{c.overallScore.toFixed(1)}</span>
                   </td>
                   <td className="py-3 px-3 text-emerald-500 font-semibold">
                     {c.pillars.consumption.score.toFixed(1)}

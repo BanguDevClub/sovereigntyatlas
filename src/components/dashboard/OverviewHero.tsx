@@ -8,11 +8,9 @@ import {
   FlaskConical,
   Shield,
   ArrowRight,
-  ExternalLink,
   Info
 } from 'lucide-react';
 import { SovereigntyRadar } from '../charts/SovereigntyRadar';
-import { SovereigntyBadge } from '../ui/SovereigntyBadge';
 import { KaTeXMath } from '../ui/KaTeXMath';
 import type { Country } from '../../lib/types';
 
@@ -69,7 +67,9 @@ export const OverviewHero: React.FC<OverviewHeroProps> = ({
           </h1>
 
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            <strong>Sovereignty Atlas</strong> measures the national resilience, industrial autonomy, and self-defense capacity of all 195 universally recognized nations across five prioritized pillars: Consumption, Employment, Technology, Science, and Defense.
+            <strong>Sovereignty Atlas</strong> measures the national resilience, industrial
+            autonomy, and self-defense capacity of all 195 universally recognized nations across
+            five prioritized pillars: Consumption, Employment, Technology, Science, and Defense.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -137,7 +137,8 @@ export const OverviewHero: React.FC<OverviewHeroProps> = ({
             </span>
           </div>
           <div className="text-2xl font-black text-foreground">
-            {topCountries[0]?.overallScore.toFixed(1)} <span className="text-sm font-normal text-muted-foreground">/ 100</span>
+            {topCountries[0]?.overallScore.toFixed(1)}{' '}
+            <span className="text-sm font-normal text-muted-foreground">/ 100</span>
           </div>
           <p className="text-xs text-muted-foreground">
             {topCountries[0]?.flag} {topCountries[0]?.name} (Rank #1)
@@ -164,7 +165,8 @@ export const OverviewHero: React.FC<OverviewHeroProps> = ({
               Multi-Pillar Sovereignty Radar
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Compare geopolitical superpowers across the 5 methodology dimensions. Click a pill to toggle.
+              Compare geopolitical superpowers across the 5 methodology dimensions. Click a pill to
+              toggle.
             </p>
           </div>
 
@@ -359,7 +361,10 @@ export const OverviewHero: React.FC<OverviewHeroProps> = ({
           </div>
 
           <p className="text-xs text-muted-foreground leading-relaxed">
-            The methodology explicitly establishes a hierarchical priority: basic survival and sustenance (Consumption at 28%) and internal wealth retention (Employment at 25%) precede technological scale (20%), frontier basic science (15%), and sovereign armed defense (12%).
+            The methodology explicitly establishes a hierarchical priority: basic survival and
+            sustenance (Consumption at 28%) and internal wealth retention (Employment at 25%)
+            precede technological scale (20%), frontier basic science (15%), and sovereign armed
+            defense (12%).
           </p>
 
           <div>

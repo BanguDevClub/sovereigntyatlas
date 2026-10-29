@@ -12,7 +12,7 @@ export const KaTeXMath: React.FC<KaTeXMathProps> = ({ math, block = false, class
     try {
       return katex.renderToString(math, {
         displayMode: block,
-        throwOnError: false,
+        throwOnError: false
       });
     } catch (e) {
       console.error('KaTeX error:', e);
@@ -20,12 +20,7 @@ export const KaTeXMath: React.FC<KaTeXMathProps> = ({ math, block = false, class
     }
   }, [math, block]);
 
-  return (
-    <span
-      className={className}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
-  );
+  return <span className={className} dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 export default KaTeXMath;

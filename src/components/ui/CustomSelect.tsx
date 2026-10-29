@@ -26,11 +26,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
 }) => {
   return (
     <div className="w-full space-y-1.5">
-      {label && (
-        <label className="text-xs font-medium text-muted-foreground">
-          {label}
-        </label>
-      )}
+      {label && <label className="text-xs font-medium text-muted-foreground">{label}</label>}
       <div className="relative">
         <select
           value={value}

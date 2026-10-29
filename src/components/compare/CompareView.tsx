@@ -1,22 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {
-  GitCompare,
-  Plus,
-  Trash2,
-  Trophy,
-  AlertTriangle,
-  ArrowRight,
-  TrendingUp,
-  Wheat,
-  Briefcase,
-  Cpu,
-  FlaskConical,
-  Shield
-} from 'lucide-react';
+import { Trash2, Trophy, Wheat, Briefcase, Cpu, FlaskConical, Shield } from 'lucide-react';
 import { SovereigntyRadar } from '../charts/SovereigntyRadar';
-import { SovereigntyBadge } from '../ui/SovereigntyBadge';
 import { EstimateBanner } from '../ui/EstimateBanner';
-import { formatNumber } from '../../lib/data';
 import type { Country, PillarType } from '../../lib/types';
 
 interface CompareViewProps {
@@ -32,13 +17,8 @@ const PRESETS = [
   { name: 'Nordic Fortress', ids: ['NOR', 'SWE'] }
 ];
 
-export const CompareView: React.FC<CompareViewProps> = ({
-  countries,
-  base = '/sovereigntyatlas'
-}) => {
+export const CompareView: React.FC<CompareViewProps> = ({ countries }) => {
   const [selectedIds, setSelectedIds] = useState<string[]>(['USA', 'CHN', 'BRA']);
-
-  const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -121,7 +101,8 @@ export const CompareView: React.FC<CompareViewProps> = ({
           Head-to-Head Sovereignty Compare
         </h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Direct side-by-side benchmarking of up to 4 sovereign nations across all five methodology dimensions.
+          Direct side-by-side benchmarking of up to 4 sovereign nations across all five methodology
+          dimensions.
         </p>
       </div>
 
@@ -203,7 +184,8 @@ export const CompareView: React.FC<CompareViewProps> = ({
               <div className="pt-2 flex items-baseline justify-between border-t border-border">
                 <span className="text-xs text-muted-foreground">Overall Index</span>
                 <span className="text-lg font-black text-foreground">
-                  {c.overallScore.toFixed(1)} <span className="text-[10px] text-muted-foreground">/ 100</span>
+                  {c.overallScore.toFixed(1)}{' '}
+                  <span className="text-[10px] text-muted-foreground">/ 100</span>
                 </span>
               </div>
             </div>
@@ -222,11 +204,10 @@ export const CompareView: React.FC<CompareViewProps> = ({
       {/* Overlapping Multi-Radar Chart */}
       <section className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-md space-y-6">
         <div>
-          <h2 className="text-xl font-bold text-foreground">
-            Multi-Country Comparative Radar
-          </h2>
+          <h2 className="text-xl font-bold text-foreground">Multi-Country Comparative Radar</h2>
           <p className="text-xs text-muted-foreground">
-            Visualizing asymmetric strengths across Consumption, Employment, Technological, Scientific, and Military pillars.
+            Visualizing asymmetric strengths across Consumption, Employment, Technological,
+            Scientific, and Military pillars.
           </p>
         </div>
 
@@ -237,9 +218,7 @@ export const CompareView: React.FC<CompareViewProps> = ({
       <section className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-md space-y-6">
         <div className="flex items-center justify-between pb-4 border-b border-border">
           <div>
-            <h2 className="text-xl font-bold text-foreground">
-              Pillar Head-to-Head Matrix
-            </h2>
+            <h2 className="text-xl font-bold text-foreground">Pillar Head-to-Head Matrix</h2>
             <p className="text-xs text-muted-foreground">
               Winning nation highlighted for each strategic sovereignty domain
             </p>
@@ -276,9 +255,11 @@ export const CompareView: React.FC<CompareViewProps> = ({
                 <td className="py-3.5 px-4">
                   <span className="inline-flex items-center gap-1 text-primary font-extrabold">
                     <Trophy className="size-3.5 text-amber-500" />
-                    {selectedCountries.reduce((prev, curr) =>
-                      curr.overallScore > prev.overallScore ? curr : prev
-                    ).name}
+                    {
+                      selectedCountries.reduce((prev, curr) =>
+                        curr.overallScore > prev.overallScore ? curr : prev
+                      ).name
+                    }
                   </span>
                 </td>
               </tr>
@@ -299,12 +280,17 @@ export const CompareView: React.FC<CompareViewProps> = ({
                       }`}
                     >
                       {c.pillars.consumption.score.toFixed(1)}
-                      {isWin && <span className="ml-1 text-[10px] uppercase font-bold text-emerald-500">🏆</span>}
+                      {isWin && (
+                        <span className="ml-1 text-[10px] uppercase font-bold text-emerald-500">
+                          🏆
+                        </span>
+                      )}
                     </td>
                   );
                 })}
                 <td className="py-3.5 px-4 text-muted-foreground">
-                  {consumptionWinner?.flag} {consumptionWinner?.name} (+{(consumptionWinner?.pillars.consumption.score || 0).toFixed(1)})
+                  {consumptionWinner?.flag} {consumptionWinner?.name} (+
+                  {(consumptionWinner?.pillars.consumption.score || 0).toFixed(1)})
                 </td>
               </tr>
 
@@ -324,12 +310,17 @@ export const CompareView: React.FC<CompareViewProps> = ({
                       }`}
                     >
                       {c.pillars.employment.score.toFixed(1)}
-                      {isWin && <span className="ml-1 text-[10px] uppercase font-bold text-sky-500">🏆</span>}
+                      {isWin && (
+                        <span className="ml-1 text-[10px] uppercase font-bold text-sky-500">
+                          🏆
+                        </span>
+                      )}
                     </td>
                   );
                 })}
                 <td className="py-3.5 px-4 text-muted-foreground">
-                  {employmentWinner?.flag} {employmentWinner?.name} (+{(employmentWinner?.pillars.employment.score || 0).toFixed(1)})
+                  {employmentWinner?.flag} {employmentWinner?.name} (+
+                  {(employmentWinner?.pillars.employment.score || 0).toFixed(1)})
                 </td>
               </tr>
 
@@ -349,12 +340,17 @@ export const CompareView: React.FC<CompareViewProps> = ({
                       }`}
                     >
                       {c.pillars.technological.score.toFixed(1)}
-                      {isWin && <span className="ml-1 text-[10px] uppercase font-bold text-indigo-500">🏆</span>}
+                      {isWin && (
+                        <span className="ml-1 text-[10px] uppercase font-bold text-indigo-500">
+                          🏆
+                        </span>
+                      )}
                     </td>
                   );
                 })}
                 <td className="py-3.5 px-4 text-muted-foreground">
-                  {techWinner?.flag} {techWinner?.name} (+{(techWinner?.pillars.technological.score || 0).toFixed(1)})
+                  {techWinner?.flag} {techWinner?.name} (+
+                  {(techWinner?.pillars.technological.score || 0).toFixed(1)})
                 </td>
               </tr>
 
@@ -374,12 +370,17 @@ export const CompareView: React.FC<CompareViewProps> = ({
                       }`}
                     >
                       {c.pillars.scientific.score.toFixed(1)}
-                      {isWin && <span className="ml-1 text-[10px] uppercase font-bold text-purple-500">🏆</span>}
+                      {isWin && (
+                        <span className="ml-1 text-[10px] uppercase font-bold text-purple-500">
+                          🏆
+                        </span>
+                      )}
                     </td>
                   );
                 })}
                 <td className="py-3.5 px-4 text-muted-foreground">
-                  {scienceWinner?.flag} {scienceWinner?.name} (+{(scienceWinner?.pillars.scientific.score || 0).toFixed(1)})
+                  {scienceWinner?.flag} {scienceWinner?.name} (+
+                  {(scienceWinner?.pillars.scientific.score || 0).toFixed(1)})
                 </td>
               </tr>
 
@@ -399,12 +400,17 @@ export const CompareView: React.FC<CompareViewProps> = ({
                       }`}
                     >
                       {c.pillars.military.score.toFixed(1)}
-                      {isWin && <span className="ml-1 text-[10px] uppercase font-bold text-rose-500">🏆</span>}
+                      {isWin && (
+                        <span className="ml-1 text-[10px] uppercase font-bold text-rose-500">
+                          🏆
+                        </span>
+                      )}
                     </td>
                   );
                 })}
                 <td className="py-3.5 px-4 text-muted-foreground">
-                  {militaryWinner?.flag} {militaryWinner?.name} (+{(militaryWinner?.pillars.military.score || 0).toFixed(1)})
+                  {militaryWinner?.flag} {militaryWinner?.name} (+
+                  {(militaryWinner?.pillars.military.score || 0).toFixed(1)})
                 </td>
               </tr>
             </tbody>

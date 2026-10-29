@@ -33,7 +33,10 @@ const base = '/sovereigntyatlas';
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="sovereignty, national independence, sovereignty atlas, geopolitical ranking, food self-sufficiency, energy sovereignty, military sovereignty, tech sovereignty, bangudevclub" />
+    <meta
+      name="keywords"
+      content="sovereignty, national independence, sovereignty atlas, geopolitical ranking, food self-sufficiency, energy sovereignty, military sovereignty, tech sovereignty, bangudevclub"
+    />
     <meta name="author" content="BanguDevClub" />
 
     {/* Open Graph / Facebook */}
@@ -62,7 +65,9 @@ const base = '/sovereigntyatlas';
           } else {
             document.documentElement.classList.add('dark');
           }
-        } catch (e) {}
+        } catch {
+          // Fallback to dark theme on error
+        }
       })();
     </script>
   </head>

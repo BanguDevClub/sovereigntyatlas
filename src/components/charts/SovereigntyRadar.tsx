@@ -18,10 +18,7 @@ interface SovereigntyRadarProps {
 
 const COLORS = ['#38bdf8', '#f43f5e', '#10b981', '#f59e0b', '#a855f7'];
 
-export const SovereigntyRadar: React.FC<SovereigntyRadarProps> = ({
-  countries,
-  height = 360
-}) => {
+export const SovereigntyRadar: React.FC<SovereigntyRadarProps> = ({ countries, height = 360 }) => {
   if (!countries || countries.length === 0) {
     return (
       <div className="flex h-64 items-center justify-center text-sm text-muted-foreground">
@@ -76,7 +73,7 @@ export const SovereigntyRadar: React.FC<SovereigntyRadarProps> = ({
                       <p className="font-semibold text-foreground border-b border-border pb-1">
                         {payload[0]?.payload?.pillar}
                       </p>
-                      {payload.map((entry: any, idx: number) => (
+                      {payload.map((entry, idx) => (
                         <div key={idx} className="flex items-center justify-between gap-4">
                           <span style={{ color: entry.color }} className="font-medium">
                             {entry.name}:
@@ -103,7 +100,9 @@ export const SovereigntyRadar: React.FC<SovereigntyRadarProps> = ({
                 strokeWidth={2}
               />
             ))}
-            {countries.length > 1 && <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '12px' }} />}
+            {countries.length > 1 && (
+              <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '12px' }} />
+            )}
           </RadarChart>
         </ResponsiveContainer>
       </div>

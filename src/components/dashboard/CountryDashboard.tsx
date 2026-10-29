@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Search,
-  ExternalLink,
   GitCompare,
-  TrendingUp,
-  AlertTriangle,
   Wheat,
   Briefcase,
   Cpu,
@@ -75,43 +71,143 @@ export const CountryDashboard: React.FC<CountryDashboardProps> = ({
     switch (pillar) {
       case 'consumption':
         return [
-          { name: 'Food Self-Sufficiency', score: currentCountry.pillars.consumption.foodSelfSufficiency, description: 'Domestic caloric staple production & harvest stability' },
-          { name: 'Energy Independence', score: currentCountry.pillars.consumption.energyIndependence, description: 'Domestic electricity generation vs gross demand' },
-          { name: 'Fuel Refining Capacity', score: currentCountry.pillars.consumption.fuelRefiningCapacity, description: 'Crude refining and transport fuel autonomy' },
-          { name: 'Building Materials', score: currentCountry.pillars.consumption.buildingMaterials, description: 'Cement, steel, timber, and aggregate self-reliance' },
-          { name: 'Water & Sanitation', score: currentCountry.pillars.consumption.waterSanitationAccess, description: 'Freshwater aquifer security & wastewater infrastructure' }
+          {
+            name: 'Food Self-Sufficiency',
+            score: currentCountry.pillars.consumption.foodSelfSufficiency,
+            description: 'Domestic caloric staple production & harvest stability'
+          },
+          {
+            name: 'Energy Independence',
+            score: currentCountry.pillars.consumption.energyIndependence,
+            description: 'Domestic electricity generation vs gross demand'
+          },
+          {
+            name: 'Fuel Refining Capacity',
+            score: currentCountry.pillars.consumption.fuelRefiningCapacity,
+            description: 'Crude refining and transport fuel autonomy'
+          },
+          {
+            name: 'Building Materials',
+            score: currentCountry.pillars.consumption.buildingMaterials,
+            description: 'Cement, steel, timber, and aggregate self-reliance'
+          },
+          {
+            name: 'Water & Sanitation',
+            score: currentCountry.pillars.consumption.waterSanitationAccess,
+            description: 'Freshwater aquifer security & wastewater infrastructure'
+          }
         ];
       case 'employment':
         return [
-          { name: 'Formal Employment Rate', score: currentCountry.pillars.employment.formalEmploymentRate, description: 'Share of formal contracts with social protections' },
-          { name: 'Domestic Value Retention', score: currentCountry.pillars.employment.domesticValueRetention, description: 'Workforce employed by domestically owned firms' },
-          { name: 'Brain Drain Retention', score: currentCountry.pillars.employment.brainDrainIndex, description: 'Retention of domestic STEM, medical, & technical talent' },
-          { name: 'Labor Protections', score: currentCountry.pillars.employment.laborProtectionIndex, description: 'Legal sovereignty and enforcement of labor standards' },
-          { name: 'Unemployment Resilience', score: currentCountry.pillars.employment.unemploymentResilience, description: 'Economic stability against external trade shocks' }
+          {
+            name: 'Formal Employment Rate',
+            score: currentCountry.pillars.employment.formalEmploymentRate,
+            description: 'Share of formal contracts with social protections'
+          },
+          {
+            name: 'Domestic Value Retention',
+            score: currentCountry.pillars.employment.domesticValueRetention,
+            description: 'Workforce employed by domestically owned firms'
+          },
+          {
+            name: 'Brain Drain Retention',
+            score: currentCountry.pillars.employment.brainDrainIndex,
+            description: 'Retention of domestic STEM, medical, & technical talent'
+          },
+          {
+            name: 'Labor Protections',
+            score: currentCountry.pillars.employment.laborProtectionIndex,
+            description: 'Legal sovereignty and enforcement of labor standards'
+          },
+          {
+            name: 'Unemployment Resilience',
+            score: currentCountry.pillars.employment.unemploymentResilience,
+            description: 'Economic stability against external trade shocks'
+          }
         ];
       case 'technological':
         return [
-          { name: 'Semiconductor Fabrication', score: currentCountry.pillars.technological.semiconductorFab, description: 'Microchip, CPU, GPU, & transistor foundry capability' },
-          { name: 'Frontier AI & Compute', score: currentCountry.pillars.technological.frontierAiCapacity, description: 'Sovereign foundation models & supercomputing clusters' },
-          { name: 'Patent Volume & IP', score: currentCountry.pillars.technological.patentVolume, description: 'Triadic high-value patents & indigenous intellectual property' },
-          { name: 'Telecom & Satellite', score: currentCountry.pillars.technological.telecomSovereignty, description: 'Domestic 5G/6G, undersea cables, and space launch control' },
-          { name: 'Industrial Automation', score: currentCountry.pillars.technological.industrialAutomation, description: 'Robotics density & precision machine tooling' }
+          {
+            name: 'Semiconductor Fabrication',
+            score: currentCountry.pillars.technological.semiconductorFab,
+            description: 'Microchip, CPU, GPU, & transistor foundry capability'
+          },
+          {
+            name: 'Frontier AI & Compute',
+            score: currentCountry.pillars.technological.frontierAiCapacity,
+            description: 'Sovereign foundation models & supercomputing clusters'
+          },
+          {
+            name: 'Patent Volume & IP',
+            score: currentCountry.pillars.technological.patentVolume,
+            description: 'Triadic high-value patents & indigenous intellectual property'
+          },
+          {
+            name: 'Telecom & Satellite',
+            score: currentCountry.pillars.technological.telecomSovereignty,
+            description: 'Domestic 5G/6G, undersea cables, and space launch control'
+          },
+          {
+            name: 'Industrial Automation',
+            score: currentCountry.pillars.technological.industrialAutomation,
+            description: 'Robotics density & precision machine tooling'
+          }
         ];
       case 'scientific':
         return [
-          { name: 'Frontier Research Output', score: currentCountry.pillars.scientific.frontierResearchOutput, description: 'High-impact Nature/Science publications per capita' },
-          { name: 'Higher Education Depth', score: currentCountry.pillars.scientific.higherEducationCapacity, description: 'Domestic PhD training without needing foreign education' },
-          { name: 'R&D Expenditure (% GDP)', score: currentCountry.pillars.scientific.rdExpenditureGdp, description: 'Gross domestic expenditure on research and development' },
-          { name: 'Scientific Infrastructure', score: currentCountry.pillars.scientific.scientificInfrastructure, description: 'Synchrotrons, superlabs, particle colliders, research vessels' },
-          { name: 'STEM Graduate Pipeline', score: currentCountry.pillars.scientific.stemGraduatesRatio, description: 'Annual domestic pipeline of engineers and scientists' }
+          {
+            name: 'Frontier Research Output',
+            score: currentCountry.pillars.scientific.frontierResearchOutput,
+            description: 'High-impact Nature/Science publications per capita'
+          },
+          {
+            name: 'Higher Education Depth',
+            score: currentCountry.pillars.scientific.higherEducationCapacity,
+            description: 'Domestic PhD training without needing foreign education'
+          },
+          {
+            name: 'R&D Expenditure (% GDP)',
+            score: currentCountry.pillars.scientific.rdExpenditureGdp,
+            description: 'Gross domestic expenditure on research and development'
+          },
+          {
+            name: 'Scientific Infrastructure',
+            score: currentCountry.pillars.scientific.scientificInfrastructure,
+            description: 'Synchrotrons, superlabs, particle colliders, research vessels'
+          },
+          {
+            name: 'STEM Graduate Pipeline',
+            score: currentCountry.pillars.scientific.stemGraduatesRatio,
+            description: 'Annual domestic pipeline of engineers and scientists'
+          }
         ];
       case 'military':
         return [
-          { name: 'Active & Reserve Troops', score: currentCountry.pillars.military.activePersonnelReserve, description: 'Trained combat personnel relative to territorial borders' },
-          { name: 'Domestic Defense Industry', score: currentCountry.pillars.military.domesticDefenseIndustry, description: 'Indigenous design & production of tanks, ships, and aircraft' },
-          { name: 'Air & Missile Defense', score: currentCountry.pillars.military.airDefenseMissileCapability, description: 'Integrated surface-to-air missile umbrellas & radar' },
-          { name: 'Strategic Deterrence', score: currentCountry.pillars.military.strategicDeterrence, description: 'Nuclear triad, second-strike capability, or hypersonic deterrent' },
-          { name: 'Logistical Sustainment', score: currentCountry.pillars.military.logisticalSelfSufficiency, description: 'Domestic ammunition stockpiles, fuel reserves, wartime sustainment' }
+          {
+            name: 'Active & Reserve Troops',
+            score: currentCountry.pillars.military.activePersonnelReserve,
+            description: 'Trained combat personnel relative to territorial borders'
+          },
+          {
+            name: 'Domestic Defense Industry',
+            score: currentCountry.pillars.military.domesticDefenseIndustry,
+            description: 'Indigenous design & production of tanks, ships, and aircraft'
+          },
+          {
+            name: 'Air & Missile Defense',
+            score: currentCountry.pillars.military.airDefenseMissileCapability,
+            description: 'Integrated surface-to-air missile umbrellas & radar'
+          },
+          {
+            name: 'Strategic Deterrence',
+            score: currentCountry.pillars.military.strategicDeterrence,
+            description: 'Nuclear triad, second-strike capability, or hypersonic deterrent'
+          },
+          {
+            name: 'Logistical Sustainment',
+            score: currentCountry.pillars.military.logisticalSelfSufficiency,
+            description: 'Domestic ammunition stockpiles, fuel reserves, wartime sustainment'
+          }
         ];
     }
   };
@@ -125,11 +221,36 @@ export const CountryDashboard: React.FC<CountryDashboardProps> = ({
   };
 
   const pillarRankList = [
-    { type: 'consumption' as PillarType, label: '1. Consumption (28%)', icon: Wheat, score: currentCountry.pillars.consumption.score },
-    { type: 'employment' as PillarType, label: '2. Employment (25%)', icon: Briefcase, score: currentCountry.pillars.employment.score },
-    { type: 'technological' as PillarType, label: '3. Technology (20%)', icon: Cpu, score: currentCountry.pillars.technological.score },
-    { type: 'scientific' as PillarType, label: '4. Scientific (15%)', icon: FlaskConical, score: currentCountry.pillars.scientific.score },
-    { type: 'military' as PillarType, label: '5. Military (12%)', icon: Shield, score: currentCountry.pillars.military.score }
+    {
+      type: 'consumption' as PillarType,
+      label: '1. Consumption (28%)',
+      icon: Wheat,
+      score: currentCountry.pillars.consumption.score
+    },
+    {
+      type: 'employment' as PillarType,
+      label: '2. Employment (25%)',
+      icon: Briefcase,
+      score: currentCountry.pillars.employment.score
+    },
+    {
+      type: 'technological' as PillarType,
+      label: '3. Technology (20%)',
+      icon: Cpu,
+      score: currentCountry.pillars.technological.score
+    },
+    {
+      type: 'scientific' as PillarType,
+      label: '4. Scientific (15%)',
+      icon: FlaskConical,
+      score: currentCountry.pillars.scientific.score
+    },
+    {
+      type: 'military' as PillarType,
+      label: '5. Military (12%)',
+      icon: Shield,
+      score: currentCountry.pillars.military.score
+    }
   ];
 
   return (
@@ -197,10 +318,7 @@ export const CountryDashboard: React.FC<CountryDashboardProps> = ({
 
       {/* Estimate Notice Banner if applicable */}
       {currentCountry.isEstimate && (
-        <EstimateBanner
-          countryName={currentCountry.name}
-          notice={currentCountry.estimateNotice}
-        />
+        <EstimateBanner countryName={currentCountry.name} notice={currentCountry.estimateNotice} />
       )}
 
       {/* Main Country Profile Card */}
@@ -231,8 +349,8 @@ export const CountryDashboard: React.FC<CountryDashboardProps> = ({
                   {formatNumber(currentCountry.population)} citizens
                 </span>
                 <span className="flex items-center gap-1">
-                  <DollarSign className="size-3.5 text-primary" />
-                  ${currentCountry.gdpNominalBillions.toLocaleString()}B GDP
+                  <DollarSign className="size-3.5 text-primary" />$
+                  {currentCountry.gdpNominalBillions.toLocaleString()}B GDP
                 </span>
               </div>
             </div>
@@ -253,9 +371,7 @@ export const CountryDashboard: React.FC<CountryDashboardProps> = ({
             <div className="space-y-2">
               <div className="rounded-xl border border-border bg-muted/40 px-3 py-2 text-xs">
                 <span className="text-muted-foreground">Global Rank: </span>
-                <span className="font-extrabold text-foreground">
-                  #{currentCountry.rank}
-                </span>
+                <span className="font-extrabold text-foreground">#{currentCountry.rank}</span>
                 <span className="text-muted-foreground"> / 195</span>
               </div>
               <div className="rounded-xl border border-border bg-muted/40 px-3 py-2 text-xs">
@@ -338,7 +454,10 @@ export const CountryDashboard: React.FC<CountryDashboardProps> = ({
                     <div className="flex items-center gap-2.5">
                       <div
                         className="flex size-8 items-center justify-center rounded-lg"
-                        style={{ backgroundColor: `${pillarColorMap[p.type]}20`, color: pillarColorMap[p.type] }}
+                        style={{
+                          backgroundColor: `${pillarColorMap[p.type]}20`,
+                          color: pillarColorMap[p.type]
+                        }}
                       >
                         <Icon className="size-4" />
                       </div>

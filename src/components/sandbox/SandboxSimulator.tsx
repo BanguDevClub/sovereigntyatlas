@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import {
-  Sliders,
   RotateCcw,
   Zap,
   TrendingUp,
@@ -9,12 +8,8 @@ import {
   Briefcase,
   Cpu,
   FlaskConical,
-  Shield,
-  ArrowRight,
-  Info
+  Shield
 } from 'lucide-react';
-import { KaTeXMath } from '../ui/KaTeXMath';
-import { SovereigntyBadge } from '../ui/SovereigntyBadge';
 import type { Country } from '../../lib/types';
 
 interface SandboxSimulatorProps {
@@ -60,7 +55,8 @@ const SCENARIOS: Scenario[] = [
   },
   {
     name: 'Global Kinetic War',
-    tagline: 'Naval strike readiness, missile defense umbrellas, and domestic ordnance take priority',
+    tagline:
+      'Naval strike readiness, missile defense umbrellas, and domestic ordnance take priority',
     weights: { consumption: 30, employment: 10, technological: 15, scientific: 5, military: 40 }
   },
   {
@@ -98,11 +94,11 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
   // Recalculate scores and ranks for all 195 nations
   const recalculatedList = useMemo(() => {
     const factor = totalRawWeight > 0 ? 1 / totalRawWeight : 1;
-    const wC = (weights.consumption * factor);
-    const wE = (weights.employment * factor);
-    const wT = (weights.technological * factor);
-    const wS = (weights.scientific * factor);
-    const wM = (weights.military * factor);
+    const wC = weights.consumption * factor;
+    const wE = weights.employment * factor;
+    const wT = weights.technological * factor;
+    const wS = weights.scientific * factor;
+    const wM = weights.military * factor;
 
     const scored = initialCountries.map((c) => {
       const newScore = Number(
@@ -158,7 +154,8 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
           Sovereignty Sandbox &amp; Simulator
         </h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Simulate geopolitical shocks, customize methodology weights, and see in real time which nations surge or collapse.
+          Simulate geopolitical shocks, customize methodology weights, and see in real time which
+          nations surge or collapse.
         </p>
       </div>
 
@@ -212,9 +209,7 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
       <section className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-md space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border">
           <div>
-            <h2 className="text-xl font-bold text-foreground">
-              Methodology Weights Calibration
-            </h2>
+            <h2 className="text-xl font-bold text-foreground">Methodology Weights Calibration</h2>
             <p className="text-xs text-muted-foreground">
               Active formula weight allocation. Auto-normalized to 100%.
             </p>
@@ -273,7 +268,9 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
               onChange={(e) => handleSliderChange('employment', Number(e.target.value))}
               className="w-full accent-sky-500 cursor-pointer"
             />
-            <p className="text-[10px] text-muted-foreground">Formal labor, domestic value retention</p>
+            <p className="text-[10px] text-muted-foreground">
+              Formal labor, domestic value retention
+            </p>
           </div>
 
           {/* Technological */}
@@ -293,7 +290,9 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
               onChange={(e) => handleSliderChange('technological', Number(e.target.value))}
               className="w-full accent-indigo-500 cursor-pointer"
             />
-            <p className="text-[10px] text-muted-foreground">Chips, AI clusters, industrial robotics</p>
+            <p className="text-[10px] text-muted-foreground">
+              Chips, AI clusters, industrial robotics
+            </p>
           </div>
 
           {/* Scientific */}
@@ -333,7 +332,9 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
               onChange={(e) => handleSliderChange('military', Number(e.target.value))}
               className="w-full accent-rose-500 cursor-pointer"
             />
-            <p className="text-[10px] text-muted-foreground">Defense industry, missile shields, triad</p>
+            <p className="text-[10px] text-muted-foreground">
+              Defense industry, missile shields, triad
+            </p>
           </div>
         </div>
       </section>
@@ -344,9 +345,7 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
         <div className="rounded-3xl border border-emerald-500/20 bg-card p-6 shadow-md space-y-4">
           <div className="flex items-center gap-2 text-emerald-500">
             <TrendingUp className="size-5" />
-            <h3 className="font-bold text-base text-foreground">
-              Top Climbers in this Scenario
-            </h3>
+            <h3 className="font-bold text-base text-foreground">Top Climbers in this Scenario</h3>
           </div>
           <div className="divide-y divide-border/60">
             {topClimbers.length > 0 ? (
@@ -366,7 +365,9 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
                 </div>
               ))
             ) : (
-              <p className="text-xs text-muted-foreground py-4">No rank shifts at current weights.</p>
+              <p className="text-xs text-muted-foreground py-4">
+                No rank shifts at current weights.
+              </p>
             )}
           </div>
         </div>
@@ -397,7 +398,9 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
                 </div>
               ))
             ) : (
-              <p className="text-xs text-muted-foreground py-4">No rank shifts at current weights.</p>
+              <p className="text-xs text-muted-foreground py-4">
+                No rank shifts at current weights.
+              </p>
             )}
           </div>
         </div>
@@ -407,9 +410,7 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
       <section className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-md space-y-6">
         <div className="flex items-center justify-between pb-4 border-b border-border">
           <div>
-            <h2 className="text-xl font-bold text-foreground">
-              Simulated Top 30 Leaderboard
-            </h2>
+            <h2 className="text-xl font-bold text-foreground">Simulated Top 30 Leaderboard</h2>
             <p className="text-xs text-muted-foreground">
               Dynamic rank results according to your calibrated weight model
             </p>
@@ -435,9 +436,7 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
             <tbody className="divide-y divide-border/60">
               {recalculatedList.slice(0, 30).map((c) => (
                 <tr key={c.id} className="hover:bg-muted/40 transition-colors">
-                  <td className="py-3 px-3 font-black text-foreground">
-                    #{c.simRank}
-                  </td>
+                  <td className="py-3 px-3 font-black text-foreground">#{c.simRank}</td>
                   <td className="py-3 px-3 font-bold text-foreground">
                     <span className="mr-2 text-base">{c.flag}</span>
                     {c.name}
@@ -460,12 +459,8 @@ export const SandboxSimulator: React.FC<SandboxSimulatorProps> = ({
                       <span className="text-muted-foreground font-mono">= 0</span>
                     )}
                   </td>
-                  <td className="py-3 px-3 text-muted-foreground">
-                    {c.overallScore.toFixed(1)}
-                  </td>
-                  <td className="py-3 px-3 text-muted-foreground">
-                    {c.continent}
-                  </td>
+                  <td className="py-3 px-3 text-muted-foreground">{c.overallScore.toFixed(1)}</td>
+                  <td className="py-3 px-3 text-muted-foreground">{c.continent}</td>
                   <td className="py-3 px-3 text-right">
                     <a
                       href={`${cleanBase}/dashboard?country=${c.id}`}

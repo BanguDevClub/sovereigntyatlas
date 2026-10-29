@@ -1,19 +1,9 @@
 import React, { useState, useMemo } from 'react';
-import {
-  Search,
-  ArrowUpDown,
-  Download,
-  Filter,
-  ExternalLink,
-  ChevronRight,
-  AlertTriangle,
-  Info,
-  CheckCircle2
-} from 'lucide-react';
+import { ArrowUpDown, Download, ChevronRight, AlertTriangle } from 'lucide-react';
 import { SovereigntyBadge } from '../ui/SovereigntyBadge';
 import { CustomInput } from '../ui/CustomInput';
 import { formatNumber } from '../../lib/data';
-import type { Country, Continent, PillarType } from '../../lib/types';
+import type { Country } from '../../lib/types';
 
 interface RankingTableProps {
   countries: Country[];
@@ -87,8 +77,8 @@ export const RankingTable: React.FC<RankingTableProps> = ({
     }
 
     result.sort((a, b) => {
-      let valA: any;
-      let valB: any;
+      let valA: string | number;
+      let valB: string | number;
 
       switch (sortField) {
         case 'rank':
@@ -178,7 +168,9 @@ export const RankingTable: React.FC<RankingTableProps> = ({
       c.isEstimate
     ]);
 
-    const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
+    const csvContent =
+      'data:text/csv;charset=utf-8,' +
+      [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
@@ -241,7 +233,7 @@ export const RankingTable: React.FC<RankingTableProps> = ({
             {/* Estimate Filter */}
             <select
               value={estimateFilter}
-              onChange={(e) => setEstimateFilter(e.target.value as any)}
+              onChange={(e) => setEstimateFilter(e.target.value as 'All' | 'official' | 'estimate')}
               className="rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/20"
             >
               <option value="All">All Data Qualities</option>
@@ -265,7 +257,9 @@ export const RankingTable: React.FC<RankingTableProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-border/70 text-xs text-muted-foreground">
           <div className="flex items-center gap-3">
             <span>
-              Showing <strong className="text-foreground">{filteredAndSortedCountries.length}</strong> of 195 nations
+              Showing{' '}
+              <strong className="text-foreground">{filteredAndSortedCountries.length}</strong> of
+              195 nations
             </span>
             <span>&bull;</span>
             <span>
@@ -385,14 +379,9 @@ export const RankingTable: React.FC<RankingTableProps> = ({
             </thead>
             <tbody className="divide-y divide-border/60">
               {filteredAndSortedCountries.map((c) => (
-                <tr
-                  key={c.id}
-                  className="hover:bg-muted/40 transition-colors group"
-                >
+                <tr key={c.id} className="hover:bg-muted/40 transition-colors group">
                   {/* Rank */}
-                  <td className="py-3.5 px-3.5 font-black text-foreground">
-                    #{c.rank}
-                  </td>
+                  <td className="py-3.5 px-3.5 font-black text-foreground">#{c.rank}</td>
 
                   {/* Country Name & Flag */}
                   <td className="py-3.5 px-3.5">

@@ -54,7 +54,7 @@ export const ThemeSelector: React.FC = () => {
 
   useEffect(() => {
     const saved = localStorage.getItem('sa-theme') as ThemeName;
-    if (saved && THEMES.some(t => t.id === saved)) {
+    if (saved && THEMES.some((t) => t.id === saved)) {
       applyTheme(saved);
       setCurrentTheme(saved);
     } else {
@@ -79,7 +79,7 @@ export const ThemeSelector: React.FC = () => {
     setIsOpen(false);
   };
 
-  const currentOption = THEMES.find(t => t.id === currentTheme) || THEMES[0];
+  const currentOption = THEMES.find((t) => t.id === currentTheme) || THEMES[0];
 
   return (
     <div className="relative inline-block text-left">
@@ -104,10 +104,7 @@ export const ThemeSelector: React.FC = () => {
 
       {isOpen && (
         <>
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => setIsOpen(false)}
-          />
+          <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
           <div className="absolute right-0 mt-2 w-56 rounded-xl border border-border bg-card p-1.5 shadow-xl z-50 animate-in fade-in zoom-in-95">
             <div className="px-2 py-1 text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
               Select Theme (6 Presets)

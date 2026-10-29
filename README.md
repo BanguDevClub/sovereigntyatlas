@@ -18,13 +18,13 @@
 
 The Sovereignty Atlas methodology establishes a rigorous hierarchical priority. Physical survival and economic retention strictly precede technological scale and military power:
 
-| Rank | Pillar | Weight | Focus & Sub-Indicators |
-|:---:|:---|:---:|:---|
-| **#1** | **Consumption Sovereignty** | **28%** | **Basic sustenance & physical survival:** Caloric staple food self-sufficiency, electrical energy independence, domestic crude & biofuel refining capacity, building materials (cement/steel/timber), and potable freshwater aquifer security. |
-| **#2** | **Employment Sovereignty** | **25%** | **Domestic value retention & labor autonomy:** Formal protected contracts, domestic employer ownership (non-offshore dependency), high-skilled talent & brain drain retention, domestic labor standard enforcement, and unemployment resilience under trade shocks. |
-| **#3** | **Technological Sovereignty** | **20%** | **Frontier digital & physical production:** Commercial microchip wafer fabrication (CPU/GPU/transistors), sovereign AI foundation models & compute clusters, triadic patents, telecom sovereignty (5G/6G & undersea cables), and industrial robotics density. |
-| **#4** | **Scientific Sovereignty** | **15%** | **Fundamental research & academic autonomy:** High-impact journal citations (Nature Index), domestic PhD training depth without foreign universities, R&D expenditure as % of GDP, scientific mega-infrastructure (superlabs/synchrotrons), and STEM graduate pipeline. |
-| **#5** | **Military Sovereignty** | **12%** | **Self-defense & deterrence capability:** Active & reserve combat forces relative to borders, indigenous defense manufacturing (tanks, ships, fighter aircraft), integrated air/missile defense umbrellas, strategic nuclear/hypersonic deterrence, and wartime ammunition sustainment. |
+|  Rank  | Pillar                        | Weight  | Focus & Sub-Indicators                                                                                                                                                                                                                                                                  |
+| :----: | :---------------------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **#1** | **Consumption Sovereignty**   | **28%** | **Basic sustenance & physical survival:** Caloric staple food self-sufficiency, electrical energy independence, domestic crude & biofuel refining capacity, building materials (cement/steel/timber), and potable freshwater aquifer security.                                          |
+| **#2** | **Employment Sovereignty**    | **25%** | **Domestic value retention & labor autonomy:** Formal protected contracts, domestic employer ownership (non-offshore dependency), high-skilled talent & brain drain retention, domestic labor standard enforcement, and unemployment resilience under trade shocks.                     |
+| **#3** | **Technological Sovereignty** | **20%** | **Frontier digital & physical production:** Commercial microchip wafer fabrication (CPU/GPU/transistors), sovereign AI foundation models & compute clusters, triadic patents, telecom sovereignty (5G/6G & undersea cables), and industrial robotics density.                           |
+| **#4** | **Scientific Sovereignty**    | **15%** | **Fundamental research & academic autonomy:** High-impact journal citations (Nature Index), domestic PhD training depth without foreign universities, R&D expenditure as % of GDP, scientific mega-infrastructure (superlabs/synchrotrons), and STEM graduate pipeline.                 |
+| **#5** | **Military Sovereignty**      | **12%** | **Self-defense & deterrence capability:** Active & reserve combat forces relative to borders, indigenous defense manufacturing (tanks, ships, fighter aircraft), integrated air/missile defense umbrellas, strategic nuclear/hypersonic deterrence, and wartime ammunition sustainment. |
 
 ---
 
@@ -60,7 +60,7 @@ $$\phi_k(x) = \min\left(100, \max\left(0, \frac{x - x_{\min, k}}{x_{\max, k} - x
 3. **Continents (`/sovereigntyatlas/continents`)**: Regional aggregation across Africa (54 nations), Asia (48), Europe (44), North America (23), South America (12), and Oceania (14) with regional rankings and comparative benchmarks.
 4. **Ranking (`/sovereigntyatlas/ranking`)**: Complete 1 to 195 leaderboard table with multi-column sorting (Rank, Overall, Consumption, Employment, Tech, Science, Military, Population, GDP), filters by continent, tier, data quality, and instant CSV export.
 5. **Compare (`/sovereigntyatlas/compare`)**: Side-by-side head-to-head benchmarking for 2 to 4 countries simultaneously with overlapping radar polygons, category winner badges, and direct delta matrices.
-6. **Sandbox (`/sovereigntyatlas/sandbox`)**: Interactive weights laboratory with real-time sliders (auto-normalizing to 100%), live re-ranking of all 195 nations, and pre-configured stress scenarios (*Global Energy Shock*, *Chip Embargo*, *Kinetic War*, *Labor Flight*).
+6. **Sandbox (`/sovereigntyatlas/sandbox`)**: Interactive weights laboratory with real-time sliders (auto-normalizing to 100%), live re-ranking of all 195 nations, and pre-configured stress scenarios (_Global Energy Shock_, _Chip Embargo_, _Kinetic War_, _Labor Flight_).
 7. **Methodology (`/sovereigntyatlas/methodology`)**: Transparent documentation of formulas, sub-indicators, data sources (IMF, World Bank, FAO, SIPRI, WIPO), and proxy estimation frameworks.
 
 ---
@@ -83,6 +83,7 @@ Switch themes seamlessly from the palette selector in the navigation header.
 ## 🔍 Data Quality & Proxy Estimation Notice
 
 For jurisdictions where primary national statistics are restricted, censored, or unavailable (e.g. North Korea, Syria, Somalia, Yemen, South Sudan, Cuba, Vatican City), Sovereignty Atlas uses a calibrated third-party estimation model:
+
 - **Mirror Trade Data:** UN Comtrade and IMF Direction of Trade declarations from verified trade partners.
 - **Remote Sensing:** Satellite nighttime luminosity, crop vegetative health (NDVI), and marine oil tanker tracking.
 - **Security Baselines:** SIPRI Military Expenditure Database and IISS The Military Balance.
@@ -109,32 +110,59 @@ All data is structured in a single unique JSON file:
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/BanguDevClub/sovereigntyatlas.git
 cd sovereigntyatlas
 ```
 
 ### 2. Install dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Start development server
+
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:4321/sovereigntyatlas/](http://localhost:4321/sovereigntyatlas/) in your browser.
 
 ### 4. Build for production
+
 ```bash
 npm run build
 ```
+
 The static build will be generated in `./dist/`.
 
 ### 5. Preview production build
+
 ```bash
 npm run preview
 ```
+
+---
+
+## 🧰 Developer QoL Commands
+
+| Command                 | Purpose                                                                                            |
+| :---------------------- | :------------------------------------------------------------------------------------------------- |
+| `npm run help`          | Interactive CLI guide of all developer scripts with descriptions                                   |
+| `npm run validate`      | **Full CI pipeline:** runs dataset validation + typecheck + lint + format check + production build |
+| `npm run typecheck`     | Strict dual type check combining `astro check` and `tsc --noEmit`                                  |
+| `npm run lint`          | ESLint static analysis on all Astro, TypeScript, and React code                                    |
+| `npm run lint:fix`      | Automatically fixes ESLint formatting and rule warnings                                            |
+| `npm run format`        | Auto-formats all source code and documentation using Prettier                                      |
+| `npm run format:check`  | Verifies whether all files conform to Prettier guidelines                                          |
+| `npm run fix`           | One-command DX fix: executes `npm run format` + `npm run lint:fix`                                 |
+| `npm run data:validate` | Validates dataset integrity (195 nations, sequential ranks, 5 pillars, formula math)               |
+| `npm run data:generate` | Recalculates and regenerates `src/data/sovereignty_atlas_2025.json`                                |
+| `npm run clean`         | Removes `./dist` and `./.astro` build caches                                                       |
+| `npm run clean:all`     | Deep clean: removes `./dist`, `./.astro`, and `node_modules/`                                      |
+| `npm run reinstall`     | Nuclear reset: cleans all artifacts and runs a fresh `npm install`                                 |
 
 ---
 
