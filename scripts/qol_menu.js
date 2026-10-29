@@ -28,6 +28,7 @@ ${bold(blue('🛡️ Type-Safety & Validation:'))}
   ${cyan('npm run typecheck')}    ${dim('Strict TypeScript and Astro diagnostics check (astro check && tsc)')}
   ${cyan('npm run data:validate')} ${dim('Validate 195 nations dataset (weights sum, ranks 1-195, mathematical formulas)')}
   ${cyan('npm run data:generate')} ${dim('Regenerate the complete 195-nation dataset using calibration script')}
+  ${cyan('npm run images:generate')} ${dim('Generate high-res OG PNG and multi-resolution favicons')}
   ${cyan('npm run validate')}     ${dim('Full CI pipeline: data:validate + typecheck + lint + format:check + build')}
 
 ${bold(magenta('🧹 Clean & Maintenance:'))}

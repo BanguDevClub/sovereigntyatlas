@@ -27,6 +27,7 @@
     "typecheck:ts": "tsc --noEmit",
     "data:validate": "python3 scripts/validate_dataset.py",
     "data:generate": "python3 scripts/build_atlas_dataset.py",
+    "images:generate": "node scripts/generate_images.mjs",
     "fix": "npm run format && npm run lint:fix",
     "clean": "rm -rf dist .astro",
     "clean:all": "rm -rf dist .astro node_modules package-lock.json",
@@ -62,6 +63,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@eslint/js": "^10.0.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/katex": "^0.16.8",
     "eslint": "^10.13.0",
     "eslint-plugin-astro": "^3.2.1",
