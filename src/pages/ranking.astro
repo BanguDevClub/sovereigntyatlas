@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RankingTable from '../components/ranking/RankingTable';
+import { getAllCountries } from '../lib/data';
+
+const countries = getAllCountries();
+---
+
+<Layout
+  title="Global Sovereignty Ranking 2025 | 195 Nations Evaluated"
+  description="Full interactive leaderboard ranking 195 sovereign nations across Consumption, Employment, Technological, Scientific, and Military independence."
+>
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-3xl font-black tracking-tight text-foreground">
+        Global Sovereignty Ranking (2025)
+      </h1>
+      <p class="text-sm text-muted-foreground mt-1">
+        Comprehensive leaderboard covering all 195 sovereign nations with sortable pillars, filters, and CSV export.
+      </p>
+    </div>
+
+    <RankingTable
+      client:load
+      countries={countries}
+      base="/sovereigntyatlas"
+    />
+  </div>
+</Layout>

@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CountryDashboard from '../../components/dashboard/CountryDashboard';
+import { getAllCountries } from '../../lib/data';
+
+const countries = getAllCountries();
+---
+
+<Layout
+  title="Country Sovereignty Dashboard | Sovereignty Atlas 2025"
+  description="Explore detailed sovereignty scores, submetrics, radar charts, and vulnerability analysis for 195 nations."
+>
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-3xl font-black tracking-tight text-foreground">
+        Country Dashboard
+      </h1>
+      <p class="text-sm text-muted-foreground mt-1">
+        Detailed geopolitical autonomy, pillar breakdowns, and submetric profiles for 195 sovereign nations.
+      </p>
+    </div>
+
+    <CountryDashboard
+      client:load
+      initialCountries={countries}
+      base="/sovereigntyatlas"
+    />
+  </div>
+</Layout>

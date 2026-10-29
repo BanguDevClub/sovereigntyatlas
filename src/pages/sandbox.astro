@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SandboxSimulator from '../components/sandbox/SandboxSimulator';
+import { getAllCountries } from '../lib/data';
+
+const countries = getAllCountries();
+---
+
+<Layout
+  title="Sovereignty Weights Sandbox | Sovereignty Atlas 2025"
+  description="Interactive geopolitical simulator to test custom pillar weights, simulate embargoes and energy shocks, and watch global rankings shift in real time."
+>
+  <SandboxSimulator
+    client:load
+    initialCountries={countries}
+    base="/sovereigntyatlas"
+  />
+</Layout>

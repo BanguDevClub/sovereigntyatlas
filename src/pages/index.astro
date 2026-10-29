@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import OverviewHero from '../components/dashboard/OverviewHero';
+import { getAllCountries, getTopCountries, getTopByPillar } from '../lib/data';
+
+const countries = getAllCountries();
+const topCountries = getTopCountries(15);
+
+const champions = {
+  consumption: getTopByPillar('consumption', 1)[0],
+  employment: getTopByPillar('employment', 1)[0],
+  technological: getTopByPillar('technological', 1)[0],
+  scientific: getTopByPillar('scientific', 1)[0],
+  military: getTopByPillar('military', 1)[0]
+};
+---
+
+<Layout
+  title="Sovereignty Atlas 2025 | Measuring National Independence for 195 Countries"
+  description="Open-source metric dashboards, ranking, and compare tool evaluating the national independence of 195 countries across Consumption, Employment, Technological, Scientific, and Military pillars."
+>
+  <OverviewHero
+    client:load
+    topCountries={topCountries}
+    champions={champions}
+    base="/sovereigntyatlas"
+  />
+</Layout>

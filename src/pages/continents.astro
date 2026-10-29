@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContinentsView from '../components/continents/ContinentsView';
+import { getContinentsSummary, getAllCountries } from '../lib/data';
+
+const continents = getContinentsSummary();
+const allCountries = getAllCountries();
+---
+
+<Layout
+  title="Continental Sovereignty | Sovereignty Atlas 2025"
+  description="Explore sovereignty and macroeconomic resilience across Africa, Asia, Europe, North America, South America, and Oceania."
+>
+  <ContinentsView
+    client:load
+    continents={continents}
+    allCountries={allCountries}
+    base="/sovereigntyatlas"
+  />
+</Layout>

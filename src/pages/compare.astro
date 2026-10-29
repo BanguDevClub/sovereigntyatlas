@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CompareView from '../components/compare/CompareView';
+import { getAllCountries } from '../lib/data';
+
+const countries = getAllCountries();
+---
+
+<Layout
+  title="Compare Countries | Sovereignty Atlas 2025"
+  description="Compare national sovereignty side-by-side across Consumption, Employment, Technological, Scientific, and Military self-reliance."
+>
+  <CompareView
+    client:load
+    countries={countries}
+    base="/sovereigntyatlas"
+  />
+</Layout>

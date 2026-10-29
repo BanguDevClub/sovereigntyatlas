@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import Header from '../components/navigation/Header';
+import Footer from '../components/navigation/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Sovereignty Atlas 2025 | Global National Independence Metric',
+  description = 'Open-source metric dashboards, ranking, and compare tool evaluating the national independence of 195 countries across Consumption, Employment, Technological, Scientific, and Military pillars.',
+  ogImage = '/sovereigntyatlas/og-image.svg'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://bangudevclub.github.io');
+const currentPath = Astro.url.pathname;
+const base = '/sovereigntyatlas';
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+
+    {/* Primary SEO Meta Tags */}
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="sovereignty, national independence, sovereignty atlas, geopolitical ranking, food self-sufficiency, energy sovereignty, military sovereignty, tech sovereignty, bangudevclub" />
+    <meta name="author" content="BanguDevClub" />
+
+    {/* Open Graph / Facebook */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Sovereignty Atlas" />
+
+    {/* Twitter */}
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    {/* Immediate theme restoration to prevent FOUC */}
+    <script is:inline>
+      (function () {
+        try {
+          const theme = localStorage.getItem('sa-theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'light' || theme === 'catppuccin-latte') {
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-background text-foreground flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+    <Header client:load currentPath={currentPath} base={base} />
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <slot />
+    </main>
+    <Footer base={base} />
+  </body>
+</html>
