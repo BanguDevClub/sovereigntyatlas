@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Trash2, Trophy, Wheat, Briefcase, Cpu, FlaskConical, Shield } from 'lucide-react';
+import { Trash2, Trophy, Wheat, Briefcase, Cpu, FlaskConical, Shield, Plus } from 'lucide-react';
 import { SovereigntyRadar } from '../charts/SovereigntyRadar';
 import { EstimateBanner } from '../ui/EstimateBanner';
+import { CustomSelect } from '../ui/CustomSelect';
 import type { Country, PillarType } from '../../lib/types';
 
 interface CompareViewProps {
@@ -130,25 +131,26 @@ export const CompareView: React.FC<CompareViewProps> = ({ countries }) => {
 
           {/* Add country select */}
           {selectedIds.length < 4 && (
-            <div className="flex items-center gap-2">
-              <select
-                onChange={(e) => {
-                  if (e.target.value) {
-                    handleAddCountry(e.target.value);
-                    e.target.value = '';
-                  }
+            <div className="w-64">
+              <CustomSelect
+                value=""
+                onChange={(val) => {
+                  if (val) handleAddCountry(val);
                 }}
-                className="rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-primary/20"
-              >
-                <option value="">+ Add Another Country...</option>
-                {countries
+                options={countries
                   .filter((c) => !selectedIds.includes(c.id))
-                  .map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.flag} {c.name} (#{c.rank})
-                    </option>
-                  ))}
-              </select>
+                  .map((c) => ({
+                    value: c.id,
+                    label: c.name,
+                    flag: c.flag,
+                    badge: `#${c.rank}`,
+                    description: `Score: ${c.overallScore.toFixed(1)} • ${c.continent}`
+                  }))}
+                placeholder="+ Add Country to Compare..."
+                searchable={true}
+                searchPlaceholder="Search 195 nations..."
+                icon={<Plus className="size-3.5" />}
+              />
             </div>
           )}
         </div>

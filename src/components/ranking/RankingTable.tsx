@@ -1,7 +1,16 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowUpDown, Download, ChevronRight, AlertTriangle } from 'lucide-react';
+import {
+  ArrowUpDown,
+  Download,
+  ChevronRight,
+  AlertTriangle,
+  Globe,
+  Shield,
+  Database
+} from 'lucide-react';
 import { SovereigntyBadge } from '../ui/SovereigntyBadge';
 import { CustomInput } from '../ui/CustomInput';
+import { CustomSelect, type SelectOption } from '../ui/CustomSelect';
 import { formatNumber } from '../../lib/data';
 import type { Country } from '../../lib/types';
 
@@ -186,12 +195,37 @@ export const RankingTable: React.FC<RankingTableProps> = ({
     return (sum / filteredAndSortedCountries.length).toFixed(1);
   }, [filteredAndSortedCountries]);
 
+  const continentOptions: SelectOption[] = [
+    { value: 'All', label: 'All Continents', badge: '6' },
+    { value: 'Africa', label: 'Africa', description: '54 nations' },
+    { value: 'Asia', label: 'Asia', description: '48 nations' },
+    { value: 'Europe', label: 'Europe', description: '44 nations' },
+    { value: 'North America', label: 'North America', description: '23 nations' },
+    { value: 'South America', label: 'South America', description: '12 nations' },
+    { value: 'Oceania', label: 'Oceania', description: '14 nations' }
+  ];
+
+  const tierOptions: SelectOption[] = [
+    { value: 'All', label: 'All Sovereignty Tiers' },
+    { value: 'Sovereign Superpower', label: 'Sovereign Superpower', badge: '80+' },
+    { value: 'High Sovereignty', label: 'High Sovereignty', badge: '68–79' },
+    { value: 'Moderate Sovereignty', label: 'Moderate Sovereignty', badge: '52–67' },
+    { value: 'Vulnerable Sovereignty', label: 'Vulnerable Sovereignty', badge: '38–51' },
+    { value: 'Severely Dependent', label: 'Severely Dependent', badge: '<38' }
+  ];
+
+  const estimateOptions: SelectOption[] = [
+    { value: 'All', label: 'All Data Qualities' },
+    { value: 'official', label: 'Official Baseline Only', badge: 'Primary' },
+    { value: 'estimate', label: 'Modeled Estimates Only', badge: 'Proxy' }
+  ];
+
   return (
     <div className="space-y-6">
       {/* Top Filter Controls */}
       <div className="rounded-3xl border border-border bg-card p-6 shadow-md space-y-4">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div className="w-full lg:w-96">
+          <div className="w-full lg:w-80">
             <CustomInput
               placeholder="Search by country, code, continent..."
               value={search}
@@ -202,50 +236,40 @@ export const RankingTable: React.FC<RankingTableProps> = ({
 
           <div className="flex flex-wrap items-center gap-2.5">
             {/* Continent filter */}
-            <select
-              value={selectedContinent}
-              onChange={(e) => setSelectedContinent(e.target.value)}
-              className="rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/20"
-            >
-              <option value="All">All Continents (6)</option>
-              <option value="Africa">Africa</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="North America">North America</option>
-              <option value="South America">South America</option>
-              <option value="Oceania">Oceania</option>
-            </select>
+            <div className="w-44">
+              <CustomSelect
+                value={selectedContinent}
+                onChange={(val) => setSelectedContinent(val)}
+                options={continentOptions}
+                icon={<Globe className="size-3.5" />}
+              />
+            </div>
 
             {/* Tier Filter */}
-            <select
-              value={selectedTier}
-              onChange={(e) => setSelectedTier(e.target.value)}
-              className="rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/20"
-            >
-              <option value="All">All Tiers (5)</option>
-              <option value="Sovereign Superpower">Sovereign Superpower (80+)</option>
-              <option value="High Sovereignty">High Sovereignty (68-79)</option>
-              <option value="Moderate Sovereignty">Moderate (52-67)</option>
-              <option value="Vulnerable Sovereignty">Vulnerable (38-51)</option>
-              <option value="Severely Dependent">Severely Dependent (&lt;38)</option>
-            </select>
+            <div className="w-52">
+              <CustomSelect
+                value={selectedTier}
+                onChange={(val) => setSelectedTier(val)}
+                options={tierOptions}
+                icon={<Shield className="size-3.5" />}
+              />
+            </div>
 
             {/* Estimate Filter */}
-            <select
-              value={estimateFilter}
-              onChange={(e) => setEstimateFilter(e.target.value as 'All' | 'official' | 'estimate')}
-              className="rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/20"
-            >
-              <option value="All">All Data Qualities</option>
-              <option value="official">Official Baseline Only</option>
-              <option value="estimate">Modeled Estimates Only</option>
-            </select>
+            <div className="w-48">
+              <CustomSelect
+                value={estimateFilter}
+                onChange={(val) => setEstimateFilter(val as 'All' | 'official' | 'estimate')}
+                options={estimateOptions}
+                icon={<Database className="size-3.5" />}
+              />
+            </div>
 
             {/* Export CSV Button */}
             <button
               type="button"
               onClick={exportCSV}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-border bg-card hover:bg-muted text-foreground transition-all shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] rounded-xl text-xs font-semibold border border-border/80 bg-card hover:bg-muted/80 text-foreground transition-all shadow-xs cursor-pointer select-none"
             >
               <Download className="size-3.5 text-primary" />
               <span>Export CSV</span>

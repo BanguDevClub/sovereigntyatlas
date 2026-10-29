@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Trophy, TrendingDown, ChevronRight } from 'lucide-react';
+import { MapPin, Trophy, TrendingDown, ChevronRight, Globe } from 'lucide-react';
 import {
   BarChart,
   Bar,
@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
+import { CustomSelect } from '../ui/CustomSelect';
 import { formatNumber } from '../../lib/data';
 import type { ContinentSummary, Country, Continent } from '../../lib/types';
 
@@ -198,19 +199,18 @@ export const ContinentsView: React.FC<ContinentsViewProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground">Select Continent:</span>
-            <select
+          <div className="w-56">
+            <CustomSelect
               value={selectedContinent}
-              onChange={(e) => setSelectedContinent(e.target.value as Continent)}
-              className="rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-primary/20"
-            >
-              {continents.map((c) => (
-                <option key={c.name} value={c.name}>
-                  {c.name} ({c.count})
-                </option>
-              ))}
-            </select>
+              onChange={(val) => setSelectedContinent(val as Continent)}
+              options={continents.map((c) => ({
+                value: c.name,
+                label: c.name,
+                badge: `${c.count}`,
+                description: `Average Index: ${c.avgScore.toFixed(1)}`
+              }))}
+              icon={<Globe className="size-3.5" />}
+            />
           </div>
         </div>
 

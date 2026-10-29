@@ -16,6 +16,7 @@ import { PillarBarChart } from '../charts/PillarBarChart';
 import { SovereigntyBadge } from '../ui/SovereigntyBadge';
 import { EstimateBanner } from '../ui/EstimateBanner';
 import { CustomInput } from '../ui/CustomInput';
+import { CustomSelect, type SelectOption } from '../ui/CustomSelect';
 import { formatNumber } from '../../lib/data';
 import type { Country, PillarType } from '../../lib/types';
 
@@ -253,21 +254,43 @@ export const CountryDashboard: React.FC<CountryDashboardProps> = ({
     }
   ];
 
+  const countrySelectOptions: SelectOption[] = initialCountries.map((c) => ({
+    value: c.id,
+    label: c.name,
+    flag: c.flag,
+    badge: `#${c.rank}`,
+    description: `Score: ${c.overallScore.toFixed(1)} • ${c.continent}`
+  }));
+
   return (
     <div className="space-y-8">
       {/* Top Search & Country Picker Strip */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 rounded-2xl border border-border bg-card p-4 shadow-xs">
-        <div className="w-full md:w-80">
-          <CustomInput
-            placeholder="Search country by name, ISO, continent..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onClear={() => setSearchQuery('')}
-          />
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 rounded-3xl border border-border bg-card p-4 shadow-md">
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+          {/* Custom Select with all 195 nations */}
+          <div className="w-full sm:w-72">
+            <CustomSelect
+              value={currentCountry.id}
+              onChange={(val) => handleSelectCountry(val)}
+              options={countrySelectOptions}
+              searchable={true}
+              searchPlaceholder="Filter 195 nations..."
+              icon={<Globe2 className="size-3.5" />}
+            />
+          </div>
+
+          <div className="w-full sm:w-64">
+            <CustomInput
+              placeholder="Quick search by name, ISO..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onClear={() => setSearchQuery('')}
+            />
+          </div>
         </div>
 
         {/* Quick Select Buttons */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 scrollbar-none">
           <span className="text-[11px] font-bold text-muted-foreground uppercase mr-1 whitespace-nowrap">
             Quick View:
           </span>

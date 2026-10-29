@@ -14,37 +14,37 @@ const THEMES: ThemeOption[] = [
     id: 'dark',
     label: 'Dark Modern',
     category: 'Standard',
-    colors: ['#090d16', '#38bdf8', '#1e293b']
+    colors: ['#080c14', '#38bdf8', '#0f172a']
   },
   {
     id: 'light',
     label: 'Light Clean',
     category: 'Standard',
-    colors: ['#f8fafc', '#0284c7', '#e2e8f0']
+    colors: ['#f8fafc', '#0284c7', '#ffffff']
   },
   {
     id: 'catppuccin-latte',
     label: 'Catppuccin Latte',
     category: 'Catppuccin',
-    colors: ['#eff1f5', '#1e66f5', '#7287fd']
+    colors: ['#eff1f5', '#1e66f5', '#ffffff']
   },
   {
     id: 'catppuccin-frappe',
     label: 'Catppuccin Frappé',
     category: 'Catppuccin',
-    colors: ['#303446', '#8caaee', '#babbf1']
+    colors: ['#232634', '#8caaee', '#303446']
   },
   {
     id: 'catppuccin-macchiato',
     label: 'Catppuccin Macchiato',
     category: 'Catppuccin',
-    colors: ['#24273a', '#8aadf4', '#b7bdf8']
+    colors: ['#181926', '#8aadf4', '#24273a']
   },
   {
     id: 'catppuccin-mocha',
     label: 'Catppuccin Mocha',
     category: 'Catppuccin',
-    colors: ['#1e1e2e', '#89b4fa', '#cba6f7']
+    colors: ['#11111b', '#89b4fa', '#1e1e2e']
   }
 ];
 
@@ -81,12 +81,15 @@ export const ThemeSelector: React.FC = () => {
 
   const currentOption = THEMES.find((t) => t.id === currentTheme) || THEMES[0];
 
+  const standardThemes = THEMES.filter((t) => t.category === 'Standard');
+  const catppuccinThemes = THEMES.filter((t) => t.category === 'Catppuccin');
+
   return (
     <div className="relative inline-block text-left">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg border border-border bg-card hover:bg-muted text-foreground transition-all shadow-xs"
+        className="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-xl border border-border/80 bg-card hover:bg-muted/80 text-foreground transition-all shadow-xs cursor-pointer select-none"
         aria-label="Switch Theme"
       >
         <Palette className="w-3.5 h-3.5 text-primary" />
@@ -105,21 +108,22 @@ export const ThemeSelector: React.FC = () => {
       {isOpen && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 mt-2 w-56 rounded-xl border border-border bg-card p-1.5 shadow-xl z-50 animate-in fade-in zoom-in-95">
-            <div className="px-2 py-1 text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
-              Select Theme (6 Presets)
+          <div className="absolute right-0 mt-2 w-60 rounded-2xl border border-border bg-card/95 backdrop-blur-md p-2 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-150">
+            {/* Standard Themes */}
+            <div className="px-2 py-1 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+              Standard Themes
             </div>
-            <div className="flex flex-col gap-1 mt-1">
-              {THEMES.map((theme) => {
+            <div className="space-y-0.5 mb-2">
+              {standardThemes.map((theme) => {
                 const isSelected = theme.id === currentTheme;
                 return (
                   <button
                     key={theme.id}
                     onClick={() => handleSelect(theme.id)}
-                    className={`flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors text-left ${
+                    className={`flex items-center justify-between w-full px-2.5 py-1.5 rounded-xl text-xs font-medium transition-colors cursor-pointer text-left ${
                       isSelected
-                        ? 'bg-primary/15 text-primary font-semibold'
-                        : 'text-foreground hover:bg-muted'
+                        ? 'bg-primary/15 text-primary font-bold shadow-xs'
+                        : 'text-foreground hover:bg-muted/80'
                     }`}
                   >
                     <div className="flex items-center gap-2">
@@ -138,6 +142,44 @@ export const ThemeSelector: React.FC = () => {
                   </button>
                 );
               })}
+            </div>
+
+            {/* Catppuccin Themes */}
+            <div className="pt-1.5 border-t border-border/70">
+              <div className="px-2 py-1 text-[10px] font-bold tracking-wider text-muted-foreground uppercase flex items-center justify-between">
+                <span>Catppuccin Flavors</span>
+                <span className="text-[9px] font-mono text-primary font-bold">4 Variants</span>
+              </div>
+              <div className="space-y-0.5 mt-0.5">
+                {catppuccinThemes.map((theme) => {
+                  const isSelected = theme.id === currentTheme;
+                  return (
+                    <button
+                      key={theme.id}
+                      onClick={() => handleSelect(theme.id)}
+                      className={`flex items-center justify-between w-full px-2.5 py-1.5 rounded-xl text-xs font-medium transition-colors cursor-pointer text-left ${
+                        isSelected
+                          ? 'bg-primary/15 text-primary font-bold shadow-xs'
+                          : 'text-foreground hover:bg-muted/80'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <div className="flex -space-x-1">
+                          {theme.colors.map((c, idx) => (
+                            <span
+                              key={idx}
+                              className="inline-block w-3 h-3 rounded-full border border-background shadow-xs"
+                              style={{ backgroundColor: c }}
+                            />
+                          ))}
+                        </div>
+                        <span>{theme.label}</span>
+                      </div>
+                      {isSelected && <Check className="w-3.5 h-3.5 text-primary shrink-0" />}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </>
