@@ -36,3 +36,4 @@ ${bold(magenta('🧹 Clean & Maintenance:'))}
   ${cyan('npm run reinstall')}    ${dim('Nuclear reset: clean:all + clean npm install')}
   ${cyan('npm run help')}         ${dim('Display this command reference anytime')}
 `);
+

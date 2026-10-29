@@ -148,6 +148,27 @@ npm run preview
 
 ## 🧰 Developer QoL Commands
 
+| Command | Purpose |
+|:---|:---|
+| `npm run help` | Interactive CLI guide of all developer scripts with descriptions |
+| `npm run validate` | **Full CI pipeline:** runs dataset validation + typecheck + lint + format check + production build |
+| `npm run typecheck` | Strict dual type check combining `astro check` and `tsc --noEmit` |
+| `npm run lint` | ESLint static analysis on all Astro, TypeScript, and React code |
+| `npm run lint:fix` | Automatically fixes ESLint formatting and rule warnings |
+| `npm run format` | Auto-formats all source code and documentation using Prettier |
+| `npm run format:check` | Verifies whether all files conform to Prettier guidelines |
+| `npm run fix` | One-command DX fix: executes `npm run format` + `npm run lint:fix` |
+| `npm run data:validate` | Validates dataset integrity (195 nations, sequential ranks, 5 pillars, formula math) |
+| `npm run data:generate` | Recalculates and regenerates `src/data/sovereignty_atlas_2025.json` |
+| `npm run clean` | Removes `./dist` and `./.astro` build caches |
+| `npm run clean:all` | Deep clean: removes `./dist`, `./.astro`, and `node_modules/` |
+| `npm run reinstall` | Nuclear reset: cleans all artifacts and runs a fresh `npm install` |
+
+
+---
+
+## 🧰 Developer QoL Commands
+
 | Command                 | Purpose                                                                                            |
 | :---------------------- | :------------------------------------------------------------------------------------------------- |
 | `npm run help`          | Interactive CLI guide of all developer scripts with descriptions                                   |
